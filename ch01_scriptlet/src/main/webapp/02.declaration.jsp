@@ -33,7 +33,7 @@
 	int one;
 	int two =1;
 	
-	public int plusMethod(int one, int two){
+	public int plusMethod(int one){
 		return one + two;
 	}
 %>
