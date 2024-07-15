@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	include의 Top부분 입니다.
 </body>
 </html>
