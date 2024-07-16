@@ -13,6 +13,6 @@
 	String blood = request.getParameter("blood");
 %>
 
-당신의 이름<%=name %>이고, 혈액형은<%=blood %>입니다.	
+당신의 이름 <%=name %>이고, 혈액형은<%=blood %>입니다.
 </body>
 </html>
