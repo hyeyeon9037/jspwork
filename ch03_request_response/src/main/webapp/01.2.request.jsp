@@ -3,8 +3,9 @@
 <%
 	String name = request.getParameter("name");
 	String sNum = request.getParameter("studentNum");
+	String major = request.getParameter("major");
+	String gender = request.getParameter("gender");
 	String[] hobby = request.getParameterValues("hobby");
-	
 	
 %>
 <!DOCTYPE html>
@@ -14,6 +15,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	이름 : <%=name %> <br>
+	학번 : <%=sNum %> <br>
+	성별 : <%=gender %><br>
+	전공 : <%=major %><br>
+	취미 :
+		  <%
+		  for(int i=0; i<hobby.length; i++){
+			  out.print(hobby[i]+ ", ");
+		  }
+	%>
+	
 </body>
 </html>
