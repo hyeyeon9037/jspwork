@@ -5,14 +5,17 @@ import java.sql.*;
 public class OracleDBTest2 {
 
 	public static void main(String[] args) {
+		Connection con = null;
+		 Statement st= null;
+		 ResultSet rs= null;
 		 try {
 	         Class.forName("oracle.jdbc.OracleDriver");
-	         Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","tjoeun", "1234");
+	         con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","tjoeun", "1234");
 	         System.out.println("Succes");
 	         
-	         Statement st = con.createStatement();
+	         st = con.createStatement();
 	         // select문 사용 시 executeQuery() 메소드를 사용한다.
-	         ResultSet rs = st.executeQuery("select * from department");
+	         rs = st.executeQuery("select * from department");
 
 	         while(rs.next()) {
 	        	 String id = rs.getString(1);
@@ -25,8 +28,21 @@ public class OracleDBTest2 {
 	         System.out.println("접속 오류");
 	      }catch (ClassNotFoundException e) {
 	          System.out.println("드라이버 오류");
+	       }finally {
+	    	   if(st != null) {
+	    		   try { st.close();}
+	    		   catch (SQLException e) {e.printStackTrace();}
+	    		   if(con != null) {
+		    		   try { con.close();}
+		    		   catch (SQLException e) {e.printStackTrace();}
+		    		   if(rs != null) {
+			    		   try { rs.close();}
+			    		   catch (SQLException e) {e.printStackTrace();}
+	    	   }
 	       }
 
 	   }
 	}
+	}
+}
 
