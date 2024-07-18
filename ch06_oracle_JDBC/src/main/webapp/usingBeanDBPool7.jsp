@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "java.util.*, ch06.*"%>
-<jsp:useBean id ="pool" class = "ch06.EmpBeanDBPool7"/>
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, ch06.*" %>
+<jsp:useBean id="pool" class="ch06.EmpBeanDBPool7" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,15 +15,21 @@
 			<th>이름</th>
 			<th>이메일</th>
 			<th>전화번호</th>
-			<th>직급코드</th>
 		</tr>
 	<%
-	ArrayList<Bean> alist = pool.getList();
-	for(int i=0; i<alist.size(); i++){
+	ArrayList<EmpBean> alist = pool.getList();
+	for(int i=0; i<alist.size(); i++) {
 		EmpBean bean = alist.get(i);
+	%>
+		<tr>
+			<td><%=bean.getEmp_id() %></td>
+			<td><%=bean.getEmp_name() %></td>
+			<td><%=bean.getEmail() %></td>
+			<td><%=bean.getPhone() %></td>
+		</tr>
+	<%
 	}
 	%>
-	
 	</table>
 </body>
 </html>
