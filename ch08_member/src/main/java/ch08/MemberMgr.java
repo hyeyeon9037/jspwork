@@ -67,6 +67,7 @@ public class MemberMgr {
 			if(pstmt.executeUpdate() == 1) { // 반환값 : insert가 안되었을 때 0반환, insert가 잘 되었을 때 1반환 
 				flag = true;
 			}  
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
