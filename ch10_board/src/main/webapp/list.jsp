@@ -1,7 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, board.*" %>
-<jsp:useBean id="bDao" class="board.BoardDao" />    
+<jsp:useBean id="bDao" class="board.BoardDao" />
+<%
+	int totalRecord = 0;	// 전체 레코드 수(board테이블의 전체 행의 수)
+	int numPerPage = 10;	// 1page에 보여줄 레코드 수
+	int pagePerBlock = 5;	// 블록당 페이지 수 = [1][2][3][4][5] 
+			
+	int totalPage = 0;		// 전체 페이지 : 레코드수 67개라면, totalPage=7  [1][2][3][4][5][6][7]
+	int totalBlock = 0;		// 전체 블록 수 : 레코드수 67개라면, totalBlock=2
+	
+	int nowPage = 1;		// 현재 해당하는 페이지
+	int nowBlock = 1;		// 현재 해당하는 블록
+	
+	int start = 0;			// board테이블의 select시 시작번호(한페이지에 필요한 만큼 게시물만 가져오려고)
+	int end = 0;			// 1page에 보여줄 레코드의 갯수(보통은 10개, 맨 마지막page는 전체레코드수에 따라 달라짐)
+	int listSize = 0;		// 현재 읽어온 게시물의 수
+	
+	start = (nowPage * numPerPage) - numPerPage + 1;  // 각 페이지당 시작번호
+	end = nowPage * numPerPage;							// 각 페이지당 끝나는 번호
+	totalRecord = bDao.getTotalCount();
+	totalPage = (int)Math.ceil((double)totalRecord / numPerPage);	// 전체 페이지 수
+	nowBlock = (int)Math.ceil((double)nowPage / pagePerBlock);		// 현재 속한 블럭
+	totalBlock = (int)Math.ceil((double)totalPage / pagePerBlock);	// 전체 블럭 계산
+	
+	String keyField = null;
+	String keyWord = null;
+%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +49,7 @@
 		<h2 class="m50">JSPBoard</h2><p/>
 		<table class="table">
 			<tr>
-				<td colspan="5" style="text-align:left;">Total : </td>
+				<td colspan="5" style="text-align:left;">Total : <%=totalRecord %>Articles <font color="red">(<%=nowPage %>/<%=totalPage %>)</font></td>
 			</tr>		
 			<tr>
 				<th width="10%">번호</th>
@@ -34,9 +59,10 @@
 				<th width="10%">조회수</th>
 			</tr>
 			<%
-			ArrayList<Board> alist = bDao.getBoardList();
+			ArrayList<Board> alist = bDao.getBoardList(keyField,keyWord,start,end);
+			listSize = alist.size();
 		
-			for(int i=0; i<alist.size(); i++) {
+			for(int i=0; i<listSize; i++) {
 				Board board = alist.get(i);
 				String rdate = board.getRegdate().substring(0,10);
 				
