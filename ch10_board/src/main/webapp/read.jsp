@@ -21,8 +21,8 @@
 
 <style>
 	* {margin: 0 auto;}
-	table {margin-top: 50px; width:800px; }
-	table th {height:40px; background-color: #B778FF;}
+	table {margin-top: 50px; width:600px; }
+	table th {height:40px; background-color: #B778FF; color:white;}
 	table td {text-align:center; height:30px;}
 	.col {background-color: #E8D9FF;}
 	.col2 {background-color: #F6F6F6;}
@@ -48,11 +48,11 @@
 		</tr>
 		<tr>
 			<td width="15%" class="col">제목</td>
-			<td colspan="3" class="col2"><%=board.getSubject() %></td>
+			<td colspan="3" class="col2" style="text-align:left; padding-left:10px;"><%=board.getSubject() %></td>
 		</tr>
 		<tr>
 			<td colspan="4" style="height:120px; text-align:left;">
-				내용 :<br>
+				본문내용 :<br>
 				<%=board.getContent() %>
 			</td>
 		</tr>
@@ -60,24 +60,24 @@
 			<td colspan="4" style="text-align:right;"><%=board.getIp() %>로 부터 글을 남기셨습니다 / 조회수 : <%=board.getCount() %> </td>
 		</tr>
 		<tr>
-         <td colspan="4"><hr><br>
-            [ <a href="javascript:list()">리스트</a> | 
-            <a href="update.jsp?nowPage=<%=nowPage%>&num=<%=num%>"> 수 정</a> | 
-            <a href="reply.jsp?nowPage=<%=nowPage%>">답 변</a> | 
-            <a href="delete.jsp?nowPage=<%=nowPage%>&num=<%=num%>"> 삭 제</a> ]
-         </td>
-      </tr>
-   </table>
-   <form name="listFrm" action="list.jsp">
-      <input type="hidden" name="nowPage" value="<%=nowPage %>">
-   </form>
-   <%
-   if(!(keyWord==null || keyWord.equals("")) ) {
-	%>
-		<input type="hidden" name="keyField" value="<%=keyField %>">
-		<input type="hidden" name="keyWord" value="<%=keyWord %>">
-	<%   
-   }
-   %>
+			<td colspan="4"><hr><br>
+				[ <a href="javascript:list()">리스트</a> | 
+				<a href="update.jsp?nowPage=<%=nowPage%>&num=<%=num%>">수 정</a> | 
+				<a href="reply.jsp?nowPage=<%=nowPage%>">답 변</a> | 
+				<a href="delete.jsp?nowPage=<%=nowPage%>&num=<%=num%>"> 삭 제</a> ]
+			</td>
+		</tr>
+	</table>
+	<form name="listFrm" action="list.jsp">
+		<input type="hidden" name="nowPage" value="<%=nowPage %>">
+		<%
+		if( !(keyWord==null || keyWord.equals("")) ) {
+		%>
+			<input type="hidden" name="keyField" value="<%=keyField %>">
+			<input type="hidden" name="keyWord" value="<%=keyWord %>">
+		<%
+		}
+		%>
+	</form>
 </body>
 </html>
