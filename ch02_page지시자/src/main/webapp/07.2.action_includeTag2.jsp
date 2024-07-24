@@ -17,5 +17,7 @@
 		<jsp:param value="jsp수업중" name="siteName"/>
 		<jsp:param value="02-4567-7895" name="siteTel"/>
 	</jsp:include>
+	<%=siteName %><br>
+    <%=siteTel %>
 </body>
 </html>
