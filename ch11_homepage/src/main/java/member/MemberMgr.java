@@ -69,7 +69,6 @@ public class MemberMgr {
 			if(pstmt.executeUpdate() == 1) { // 반환값 : insert가 안되었을 때 0반환, insert가 잘 되었을 때 1반환 
 				flag = true;
 			}  
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -77,4 +76,30 @@ public class MemberMgr {
 		}
 		return flag;
 	}
+	
+	public boolean loginMember(String id, String pwd) {
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "select id from member where id=? and pwd=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			rs = pstmt.executeQuery();
+			flag = rs.next();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return flag;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
