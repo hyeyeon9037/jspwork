@@ -1,6 +1,8 @@
-package ch08;
+package member;
 
 import java.sql.*;
+
+import db.DBConnectionMgr;
 
 public class MemberMgr {
 	private DBConnectionMgr pool;
