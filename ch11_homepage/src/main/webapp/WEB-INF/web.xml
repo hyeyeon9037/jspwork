@@ -8,9 +8,9 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>BoardPostServlet</servlet-name>
-    <url-pattern>/BoardPostServlet</url-pattern>
+    <url-pattern>/board/boardPostServlet</url-pattern>
   </servlet-mapping>
-  <display-name>ch10_board</display-name>
+  <display-name>ch11_homepage</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -27,7 +27,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>BoardPostServlet1</servlet-name>
-    <url-pattern>/boardPost</url-pattern>
+    <url-pattern>/board/boardPost</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -37,7 +37,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>BoardUpdateServlet</servlet-name>
-    <url-pattern>/boardUpdate</url-pattern>
+    <url-pattern>/board/boardUpdate</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -47,7 +47,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>BoardReplyServlet</servlet-name>
-    <url-pattern>/boardReply</url-pattern>
+    <url-pattern>/board/boardReply</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -57,6 +57,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>BoardDeleteServlet</servlet-name>
-    <url-pattern>/delete</url-pattern>
+    <url-pattern>/board/delete</url-pattern>
   </servlet-mapping>
 </web-app>
