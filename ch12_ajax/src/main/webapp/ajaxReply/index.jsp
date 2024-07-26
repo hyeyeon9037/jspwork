@@ -32,7 +32,17 @@
 			$.ajax({
 				url: "rlist.bo",
 				success:function(result){
-					console.log(result);
+					let value = "";
+					for(let i=0; i<result.length; i++) {
+						value += "<tr>"
+							  + "   <td>" + result[i].no + "</td>"
+							  + "   <td>" + result[i].content + "</td>"
+							  + "   <td>" + result[i].ref + "</td>"
+							  + "   <td>" + result[i].name + "</td>"
+							  + "   <td>" + result[i].redate + "</td>"
+							  + "</tr>";
+					}
+					$("table tbody").html(value);
 				},
 				error:function(){
 					console.log("ajax 통신 실패");
