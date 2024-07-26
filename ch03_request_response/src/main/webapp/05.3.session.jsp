@@ -9,8 +9,7 @@
 <body>
 <%
 	String season = request.getParameter("season");
-	String fruit = request.getParameter("fruit");
-	
+	String fruit = request.getParameter("fruit");	
 	String id = (String)session.getAttribute("idKey");
 	String sessionId = session.getId();
 	int intervalTime = session.getMaxInactiveInterval();
