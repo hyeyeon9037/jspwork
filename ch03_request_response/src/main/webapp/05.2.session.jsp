@@ -22,8 +22,7 @@
 	<input type="radio" name="season" value="여름">여름&emsp;
 	<input type="radio" name="season" value="가을">가을&emsp;
 	<input type="radio" name="season" value="겨울">겨울&emsp;<br>
-	
-	
+
 	2. 가장 좋아하는 과일은 ? <p/>
 	<input type="radio" name="fruit" value="사과">사과&emsp;
 	<input type="radio" name="fruit" value="포도">포도&emsp;
