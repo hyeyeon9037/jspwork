@@ -4,9 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>AJAX</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
 </head>
 <body>
 	<h1>AJAX개요</h1>
@@ -52,9 +51,9 @@
 	});
 
 	$.ajax({
-	    url : "요청할 url" (action url), < 반드시 써야함
-	    type : "전송 방식" (get, post방식), < 없으면 안써도 댐
-	    data : "요청시 전달할 값", < 없으면 안써도 댐
+	    url : "요청할 url" (action url),
+	    type : "전송 방식" (get, post방식),
+	    data : "요청시 전달할 값",
 	    success : function(data){
 	        전송에 성공하면 실행될 코드;
 	    },
@@ -65,13 +64,12 @@
 
 	* 주요속성
 	- url : 요청할 url(필수속성)
-	<필수>
 	- type|mothod : 요청전송방식(get/post)
 	- data : 요청시 전달할 값
 	- success : ajax통신이 성공했을 때 실행할 함수 정의
 	- error : ajax 통신이 실패했을 때 실행할 함수 정의
 	- complete : ajax 통신의 성공과 실패에 상관없이 무조건 실행할 함수 정의
-	</필수>
+	
 	* 부수적인속성
 	- async : 서버와의 비동기 처리 방식 설정 여부(기본값 true:비동기)
 	- contentType : request의 데이터 인코딩 방식 정의(보내는 측의 데이터 인코딩)
@@ -94,7 +92,7 @@
 	- timeout : 서버 요청 시 응답 대기 시간(milisecond)
 	</pre>
 	
-<h1>jQuery 방식을 이용한 AJAX 테스트</h1>
+	<h1>jQuery 방식을 이용한 AJAX 테스트</h1>
 	
 	<h3>1. 버튼 클릭시 get방식으로 서버에 요청 및 응답</h3>
 	
@@ -130,6 +128,8 @@
 		</p>
 		<input type="submit" value="회원가입" disabled>
 	</form>
+	
+	
 <!-- 	
 	<script type="text/javascript">
 		$(() => {
@@ -204,35 +204,172 @@
 	<hr>
 	
 	<h3>2. 버튼 클릭시 post방식으로 서버에 여러개의 데이터 전송 및 응답</h3>
-	
-	이름 : <input type="text" id="name"> <br>
-	나이 : <input type="number" id="age"> <br>
-	<button id="btn3">전송</button>
-	
+	이름 : <input type="text" id="name"><br>
+	나이 : <input type="number" id="age"><br><br>
+	<button id="btn3">전송</button><br><br>
+<!-- 
 	응답 : <label id="output3"></label>
+	
 	<script type="text/javascript">
-		 $(() => {
-			 $("#btn3").click(function() {
-				 $.ajax({
-					 url : 'ajax2.do',
-					 data : {
-						 name : $("#name").val() , 
-						 age : $("#age").val()
-					 },
-					 type : post,
-					 success : function(result) {
-						 console.log(result)
-					 },
-					 
-					 error : function() {
-						 console.log("ajax 통신 실패");
-					 }
-					 
-				 })
-			 })
-		 })
-		
+		$(() => {
+			$("#btn3").click(function() {
+				$.ajax({
+					url : 'ajax2.do',
+					data : {
+						name : $("#name").val(),
+						age : $("#age").val()
+					},
+					type : "post",
+					success : function(result) {
+						console.log(result)
+						$("#output3").html(""result);
+						$("#name").val("");
+						$("#age").val("");
+
+					},
+					error : function() {
+						console.log("ajax 통신 실패");
+					}
+				})
+			})
+		})
 	</script>
+ -->	
+	<ul id="output4">
+	</ul>
+	
+	<script type="text/javascript">
+		$(() => {
+			$("#btn3").click(function() {
+				$.ajax({
+					url : 'ajax2.do',
+					data : {
+						name : $("#name").val(),
+						age : $("#age").val()
+					},
+					type : "post",
+					success : function(result) {
+						console.log(result)
+						/* JSONArray로 받았을 때
+						console.log(result[0])
+						console.log(result[1])
+						
+						const value = "<li>이름 : " + result[0] + "</li>"
+									+ "<li>나이 : " + result[1] + "</li>";
+						*/	
+						
+						// JSONObject로 받았을 때
+						console.log(result.name);
+						console.log(result.age);
+						
+						const value = "<li>이름 : " + result.name + "</li>"
+									+ "<li>나이 : " + result.age + "</li>";
+						
+						$("#output4").html(value);
+						$("#name").val("");
+						$("#age").val("");
+					},
+					error : function() {
+						console.log("ajax 통신 실패");
+					}
+				})
+			})
+		})
+	</script>
+	
+	<hr>
+	
+	<h3>3. 서버에 데이터를 전송 후, 조회된 bean 객체를 응답데이터로 반환</h3>
+	
+	검색하고자하는 회원 ID : <input id="input5">
+	<button id="btn5">조회</button>
+	
+	<div id="output5"></div>
+	
+	<script type="text/javascript">
+		$(() => {
+			$("#btn5").click(function() {
+				$.ajax({
+					url: "ajax5.do",
+					data : {id : $("#input5").val()},
+					success : function(result) {
+						console.log(result);
+						
+						// JSONObject로 받았을 때
+						/*
+						const value = "<br>********** 검색 결과 **********<br>"
+									+ "ID : " + result.userId + "<br>"
+									+ "이름 : " + result.userName + "<br>"
+									+ "성별 : " + result.gender + "<br>"
+									+ "EMAIL : " + result.email;
+						$("#output5").html(value);
+						*/
+						
+						// GSON으로 받았을 때 
+						const value = "<br>********** 검색 결과 **********<br>"
+							+ "ID : " + result.id + "<br>"
+							+ "이름 : " + result.name + "<br>"
+							+ "성별 : " + result.gender + "<br>"
+							+ "EMAIL : " + result.email;
+						
+						$("#output5").html(value);
+					},
+					error : function() {
+						console.log("ajax 통신 실패");
+					}
+				})
+			})
+		})
+	</script>
+	
+	<hr>
+	
+	<h3>4. 응답데이터로 조회된 여러 bean객체들이 담겨 있는 ArrayList받기</h3>
+	
+	<button id="btn6">회원 전체 조회</button><br><br>
+	
+	<table id="output6" border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>이름</th>
+				<th>성별</th>
+				<th>EMAIL</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	
+	<script>
+		$(() => {
+			$("#btn6").click(function() {
+				$.ajax({
+					url : "ajax6.do",
+					success : function(result) {
+						console.log(result);
+
+						let value="";
+						for(let i=0; i<result.length; i++) {
+							value += "<tr>"
+									+ "<td>" + result[i].id + "</td>"
+									+ "<td>" + result[i].name + "</td>"
+									+ "<td>" + result[i].gender + "</td>"
+									+ "<td>" + result[i].email + "</td>"
+									+"</tr>"
+						}
+						$("#output6 tbody").html(value);
+					},
+					error : function() {
+						console.log("ajax 통신 실패");
+					}
+				})
+			})
+		})
+	</script>
+	
+	
+	
 	
 	
 	
