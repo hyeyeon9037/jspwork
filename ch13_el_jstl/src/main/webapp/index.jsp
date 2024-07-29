@@ -26,8 +26,27 @@
 		
 		2. com.tjoeun.vo 패키지 안에 Person의 bean파일 만들기	
 		
-		indedx -> Elservlet.java -> 01.el.jsp ->
+		3. com.tjoeun.controller / Elservlet 만들기 : /el.do, doGet()
+		
+		4. view/01_el/01.el.jsp 파일 만들기		
+		
+		indedx -> Elservlet.java -> 01.el.jsp <순서임>
+		
 	 -->
+	 
+	 
+	 <h3><a href="operation.do">02_EL의 연산자</a></h3>
+	 
+	 <!-- 
+	  	1. com.tjoeun.controller / OperationServlet 만들기 : /operation.do, doGet()
+	  	2. view/01_EL/02_operation.jsp 파일 만들기
+	  -->
+	 
+	 
+	 
+	 
+	 
+	 
 	
 	
 	
