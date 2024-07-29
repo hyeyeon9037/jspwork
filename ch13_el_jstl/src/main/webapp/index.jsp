@@ -43,10 +43,14 @@
 	  -->
 	 
 	 
+	 <h1> * JSP Action Tag</h1>
+	 <p>
+	 	xml 기술을 이용여 기존의 jsp문법을 확장시키는 기술을 제공하는 태그들
+	 	표준 액션 태그 : include와 forward
+	 </p>
 	 
-	 
-	 
-	 
+	 <h3>- 커스텀 액션태그</h3>
+	 <a href= "views/02_customAction/jstl.jsp">JSTL</a>
 	
 	
 	
