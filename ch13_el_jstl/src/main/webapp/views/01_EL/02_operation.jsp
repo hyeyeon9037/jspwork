@@ -29,9 +29,26 @@
 	sOne과 sTwo는 일치합니까? ${sOne == sTwo } 또는 ${sOne eq sTwo }<br>
 	sOne과 sTwo는 일치하지 않습니까? ${sOne != sTwo } 또는 ${sOne ne sTwo }<br>
 	
-	big에 담긴 값은 10과 일치합니까?
+	big에 담긴 값은 10과 일치합니까? ${big == 10 } 또는 ${big eq 10 }<br>
+	sThree에 담긴 값은 '안녕'과 일치합니까? ${sThree == "안녕" } 또는 ${sThree eq "안녕" }<br>
 	
-
+	
+	<h3> 4. 객체가 null인지 또는 리스트가 비어있는지 비교</h3>
+	pTwo가 null입니까? ${pTwo == null} 또는 ${pTwo eq null} 또는 ${empty pTwo}<br>
+	pOne이 null입니까? ${pOne == null} 또는 ${pOne eq null} 또는 ${empty pOne}<br>
+	pOne이 null이 아닙니까? ${pOne != null} 또는 ${pOne ne null} 또는 ${not empty pOne}<br>
+	
+	aOne이 비어있습니까? ${empty aOne }<br> <!--  ${aOne == null} 은 안된다 -->
+	aOne이 비어있습니까? ${empty aTwo}<br>
+	
+	<h3> 5. 논리 연산자 </h3>
+	${ true && true } 또는 ${true and true }<br>
+	${ true || true } 또는 ${true or true }<br>
+	
+	big이 small보다 크고 aOne이 비어있습니까?
+	${big > small && empty aOne} 또는 ${big > small and empty aOne}<br>
+	
+	
 	
 </body>
 </html>
