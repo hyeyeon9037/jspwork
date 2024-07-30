@@ -283,9 +283,20 @@
    <pre>
    		* url 경로를 생성하고, 쿼리스트링을 정의 들 수 있는 태그
    		&lt;:c:url var="변수명" value="요청할 url"&gt;
+   			&lt;:c:param name="키" value="전달할 값"&gt;
+   			&lt;:c:param name="키" value="전달할 값"&gt;
+   			...
    		&lt;/c:url&gt;
    </pre>
    
+   <a href="list.bo?nowpage=2&num=3"></a>
+   
+   <c:url var="u" value="list.bo">
+   		<c:param name="nowpage" value="2" />
+   		<c:param name="num" value="3" />
+   </c:url>
+   
+   <a href="${u}">c:url을 이용한 방식</a>
    
    
    
